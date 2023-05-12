@@ -1,7 +1,8 @@
-#include <iostream>
-#include <vector>
-#include <iomanip>
-#include <string>
+#include<iostream>
+#include<vector>
+#include<iomanip>
+#include<string>
+#include<conio.h>
 #include "InfoClass.h"
 
 using namespace std;
@@ -10,7 +11,7 @@ bool checkForItemInt(const vector<int>& arr, int data);
 bool checkForItemString(const vector<string>& arr, const string& data);
 void printTable(const vector<int>& placa, const vector<string>& motor, const vector<string>& modelo);
 
-int main() {
+int main(){
     char respuesta = '\0';
     int opciones;
     int placataxi;
@@ -35,23 +36,31 @@ int main() {
 
         switch (opciones) {
             case 1:
-                cout << "Ingresando Vehículo..." << endl;
-                cout << "Ingrese placa del vehículo: ";
-                                cin >> placataxi;
+                do {
+                    cout << "Ingresando Vehículo..." << endl;
+                    cout << "placa: ";
+                    cin >> placataxi;
+                } while (checkForItemInt(placa, placataxi));
                 placa.push_back(placataxi);
 
-                cout << "Ingrese número de motor: ";
-                cin >> motortaxi;
+                cin.ignore();  // Ignore newline character
+
+                do {
+                    cout << "motor: ";
+                    getline(cin, motortaxi);
+                } while (checkForItemString(motor, motortaxi));
                 motor.push_back(motortaxi);
 
-                cout << "Ingrese modelo del vehículo: ";
-                cin.ignore();
-                getline(cin, modelotaxi);
+                do {
+                    cout << "modelo: ";
+                    getline(cin, modelotaxi);
+                } while (checkForItemString(modelo, modelotaxi));
                 modelo.push_back(modelotaxi);
+
                 break;
 
             case 2:
-                printTable(placa, motor, modelo);
+                // Code logic for starting a trip
                 break;
 
             case 3:
@@ -59,11 +68,13 @@ int main() {
                 break;
 
             case 4:
-                // Code logic for viewing the list of drivers
+                printTable(placa, motor, modelo);
                 break;
 
             case 5:
                 cout << "Saliendo de TrueDrive..." << endl;
+                system("pause");
+                system("exit");
                 break;
 
             default:
@@ -71,17 +82,15 @@ int main() {
                 break;
         }
 
-        cout << "Desea continuar? (Y/N): ";
-        cin >> respuesta;
+        cout << "¿Desea continuar? (Y/N): ";
+        respuesta = getch();
     } while (respuesta == 'Y' || respuesta == 'y');
-
-    return 0;
 }
 
 bool checkForItemInt(const vector<int>& arr, int data) {
     for (int i = 0; i < arr.size(); i++) {
-        if (arr.at(i) == data) {
-            cout << "Data is already registered at position [" << i << "].\nPlease enter data again." << endl;
+        if (arr[i] == data) {
+            cout << "Data is already registered at position [" << i << "].\nPlease enter data again.\n";
             return true;
         }
     }
@@ -90,8 +99,8 @@ bool checkForItemInt(const vector<int>& arr, int data) {
 
 bool checkForItemString(const vector<string>& arr, const string& data) {
     for (int i = 0; i < arr.size(); i++) {
-        if (arr.at(i) == data) {
-            cout << "Data is already registered at position [" << i << "].\nPlease enter data again." << endl;
+        if (arr[i] == data) {
+            cout << "Data is already registered at position [" << i << "].\nPlease enter data again.\n";
             return true;
         }
     }
@@ -108,13 +117,12 @@ void printTable(const vector<int>& placa, const vector<string>& motor, const vec
 
     for (int i = 0; i < placa.size(); i++) {
         t.add(to_string(i));
-        t.add(to_string(placa.at(i)));
-        t.add(motor.at(i));
-        t.add(modelo.at(i));
+        t.add(to_string(placa[i]));
+        t.add(motor[i]);
+        t.add(modelo[i]);
         t.endOfRow();
     }
 
     t.setAlignment(2, InfoClass::Alignment::RIGHT);
     cout << t;
 }
-
