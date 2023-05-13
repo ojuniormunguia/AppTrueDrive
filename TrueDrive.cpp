@@ -3,23 +3,28 @@
 #include<iomanip>
 #include<string>
 #include<conio.h>
+#include<queue>
 #include "InfoClass.h"
 
 using namespace std;
 
 bool checkForItemInt(const vector<int>& arr, int data);
 bool checkForItemString(const vector<string>& arr, const string& data);
-void printTable(const vector<int>& placa, const vector<string>& motor, const vector<string>& modelo);
+void printTable(const vector<int>& placa, const vector<string>& motor, const vector<string>& modelo, const vector<int>& year);
+void printUserInputQueue(const queue<string>& userInputQueue);
 
 int main(){
     char respuesta = '\0';
     int opciones;
     int placataxi;
+    int yeartaxi;
     string motortaxi;
     string modelotaxi;
     vector<int> placa;
+    vector<int> year;
     vector<string> motor;
     vector<string> modelo;
+    queue<string> userInputQueue;
 
     cout << "Bienvenido a TrueDrive" << endl;
 
@@ -36,31 +41,53 @@ int main(){
 
         switch (opciones) {
             case 1:
+            	
+            	// PLACA ES INT
+            	
                 do {
-                    cout << "Ingresando Vehículo..." << endl;
+                    cout << "Ingresando Vehículo..." << endl;     
                     cout << "placa: ";
                     cin >> placataxi;
                 } while (checkForItemInt(placa, placataxi));
                 placa.push_back(placataxi);
 
                 cin.ignore();  // Ignore newline character
+                
+                // MOTOR ES STRING
 
                 do {
-                    cout << "motor: ";
+                    cout << "motor: ";                               
                     getline(cin, motortaxi);
                 } while (checkForItemString(motor, motortaxi));
                 motor.push_back(motortaxi);
+                
+                // MODELO ES STRING
 
                 do {
                     cout << "modelo: ";
                     getline(cin, modelotaxi);
                 } while (checkForItemString(modelo, modelotaxi));
                 modelo.push_back(modelotaxi);
+                
+                // YEAR ES INT
+            	
+                do {  
+                    cout << "Año: ";
+                    cin >> yeartaxi;
+                } while (checkForItemInt(year, yeartaxi));
+                year.push_back(yeartaxi);
+                
+                // Agrega todo al QUEUE ()
+    			userInputQueue.push(to_string(placataxi));
+    			userInputQueue.push(motortaxi);
+    			userInputQueue.push(modelotaxi);
+    			userInputQueue.push(to_string(yeartaxi));
 
                 break;
 
             case 2:
                 // Code logic for starting a trip
+                printUserInputQueue(userInputQueue);
                 break;
 
             case 3:
@@ -68,7 +95,7 @@ int main(){
                 break;
 
             case 4:
-                printTable(placa, motor, modelo);
+                printTable(placa, motor, modelo, year);
                 break;
 
             case 5:
@@ -106,13 +133,13 @@ bool checkForItemString(const vector<string>& arr, const string& data) {
     }
     return false;
 }
-
-void printTable(const vector<int>& placa, const vector<string>& motor, const vector<string>& modelo) {
+void printTable(const vector<int>& placa, const vector<string>& motor, const vector<string>& modelo, const vector<int>& year) {
     InfoClass t('-', '|', '+');
     t.add("Order");
     t.add("Placa");
     t.add("Motor");
     t.add("Modelo");
+    t.add("Año");
     t.endOfRow();
 
     for (int i = 0; i < placa.size(); i++) {
@@ -120,9 +147,42 @@ void printTable(const vector<int>& placa, const vector<string>& motor, const vec
         t.add(to_string(placa[i]));
         t.add(motor[i]);
         t.add(modelo[i]);
+        t.add(to_string(year[i]));
         t.endOfRow();
     }
 
     t.setAlignment(2, InfoClass::Alignment::RIGHT);
     cout << t;
 }
+
+void printUserInputQueue(const queue<string>& userInputQueue) {
+    InfoClass t('-', '|', '+');
+    t.add("Order");
+    t.add("Placa");
+    t.add("Motor");
+    t.add("Modelo");
+    t.add("Año");
+    t.endOfRow();
+
+    queue<string> tempQueue = userInputQueue; // Create a temporary queue to preserve the original queue
+    int order = 1; // Start the order from 1
+
+    while (!tempQueue.empty()) {
+        t.add(to_string(order));
+        t.add(tempQueue.front());
+        tempQueue.pop();
+        t.add(tempQueue.front());
+        tempQueue.pop();
+        t.add(tempQueue.front());
+        tempQueue.pop();
+        t.add(tempQueue.front());
+        tempQueue.pop();
+        t.endOfRow();
+        order++;
+    }
+
+    t.setAlignment(2, InfoClass::Alignment::RIGHT);
+    cout << "User Input Queue:\n";
+    cout << t;
+}
+
