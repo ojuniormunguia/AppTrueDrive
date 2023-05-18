@@ -15,6 +15,8 @@ bool checkForItemString(const vector<string>& arr, const string& data);
 void printTable(const vector<int>& placa, const vector<string>& motor, const vector<string>& modelo, const vector<int>& year);
 void printTableEjecutiva(const vector<int>& placa, const vector<string>& motor, const vector<string>& modelo, const vector<int>& year);
 void printTableTradicional(const vector<int>& placa, const vector<string>& motor, const vector<string>& modelo, const vector<int>& year);
+void printTableViajeEjecutiva(const vector<int>& placa, const vector<string>& motor, const vector<string>& modelo, const vector<int>& year);
+void printTableViajeTradicional(const vector<int>& placa, const vector<string>& motor, const vector<string>& modelo, const vector<int>& year);
 
 
 int main(){
@@ -22,10 +24,13 @@ int main(){
     int control;
     int opciones;
     int opcioneslista;
+    int opcionesviaje;
     vector<string> vtype; 
     queue<string> userInputQueue;
     int yearchecker;
-    
+    int moverint;
+	string moverstring;
+	    
     //U S E R   I N P U T S
     //Carros
 	int placataxi;
@@ -84,19 +89,33 @@ int main(){
     vector<int> vnumisssEjecutivo;
     vector<int> vtelefonoEjecutivo;
     
-    //V E C T O R E S   E N   V I A J E
+    //V E C T O R E S   E N   V I A J E S  (Tradicional)
     //Carro
-    vector<int> placaenviaje;
-    vector<int> yearenviaje;
-    vector<string> motorenviaje;
-    vector<string> modeloenviaje;
-    //Conductor 
-    vector<string> vnombreenviaje;
-    vector<string> vapellidoenviaje;
-    vector<int> vduienviaje;
-    vector<int> vlicenciaenviaje;
-    vector<int> vnumisssenviaje;
-    vector<int> vtelefonoenviaje;
+    vector<int> placaenviajeTradicional;
+    vector<int> yearenviajeTradicional;
+    vector<string> motorenviajeTradicional;
+    vector<string> modeloenviajeTradicional;
+    //Conductor
+    vector<string> vnombreenviajeTradicional;
+    vector<string> vapellidoenviajeTradicional;
+    vector<int> vduienviajeTradicional;
+    vector<int> vlicenciaenviajeTradicional;
+    vector<int> vnumisssenviajeTradicional;
+    vector<int> vtelefonoenviajeTradicional;
+    
+    //V E C T O R E S   E N   V I A J E S  (Ejecutivo)
+    //Carro
+    vector<int> placaenviajeEjecutivo;
+    vector<int> yearenviajeEjecutivo;
+    vector<string> motorenviajeEjecutivo;
+    vector<string> modeloenviajeEjecutivo;
+    //Conductor
+    vector<string> vnombreenviajeEjecutivo;
+    vector<string> vapellidoenviajeEjecutivo;
+    vector<int> vduienviajeEjecutivo;
+    vector<int> vlicenciaenviajeEjecutivo;
+    vector<int> vnumisssenviajeEjecutivo;
+    vector<int> vtelefonoenviajeEjecutivo;
     
 
     cout << "Bienvenido a TrueDrive" << endl;
@@ -266,22 +285,20 @@ int main(){
                 
                 	//DATOS DEL CONDUCTOR
                 
-                	//NOMBRE ES STRING (ÚNICO)
+                	//NOMBRE ES STRING (REPETIR)
                 
-                	do{
-                		cout<< "Ingresando datos del conductor...\n";
-                		cout<< "Ingrese el nombre: ";
-                		cin>>nombre;
-					}while(checkForItemString(vnombre,nombre));
+                	
+                	cout<< "Ingresando datos del conductor...\n";
+                	cout<< "Ingrese el nombre: ";
+                	cin>>nombre;
 					vnombre.push_back(nombre);
 					vnombreTradicional.push_back(nombre);
 				
-					//APELLIDO ES STRING (ÚNICO)
+					//APELLIDO ES STRING (REPETIR)
 				
-					do{
+					
 					cout<< "Ingrese el apellido: ";
 					cin>>apellido;
-					}while(checkForItemString(vapellido,apellido));
 					vapellido.push_back(apellido);
 					vapellidoTradicional.push_back(apellido);
                 
@@ -350,20 +367,79 @@ int main(){
         			case 3:
         				printTableTradicional(placaTradicional, motorTradicional, modeloTradicional, yearTradicional);//Imprime tradicional disponible
         				break;
-        			case 4:
+        			case 4:  				
+        				//Imprime los que estan en viaje
+        				printTableViajeEjecutiva(placaenviajeEjecutivo, motorenviajeEjecutivo, modeloenviajeEjecutivo, yearenviajeEjecutivo);
         				break;
-        			//Imprimirá los que estan en viaje
 				}
 
                 //printUserInputQueue(userInputQueue);  
                 break;
 
             case 3:
-                // Code logic for ending a trip
+                // COMIENZA VIAJE
+                cout << "¿Qué tipo de viaje desea iniciar?:\n\n";
+        		cout << "\t\t1. Ejecutivo" << endl;
+        		cout << "\t\t2. Tradicional" << endl;
+                
+                cout << "Seleccionar (1,2,3 o 4): ";
+        		cin>>opcionesviaje;
+        		
+        		switch(opcionesviaje) {
+        			case 1:
+        				//EJECUTIVO
+        				
+        				
+        				moverint = placaEjecutivo[0]; //usa "moverint/moverstring" para copiar primer elemento
+        				placaEjecutivo.erase(placaEjecutivo.begin()); //elimina el primer elemento
+						placaenviajeEjecutivo.push_back(moverint); //pega el primer elemento en vector "enviaje"
+						
+						moverint = yearEjecutivo[0];
+						yearEjecutivo.erase(yearEjecutivo.begin());
+						yearenviajeEjecutivo.push_back(moverint);    
+						
+						moverstring = motorEjecutivo[0];
+        				motorEjecutivo.erase(motorEjecutivo.begin());
+						motorenviajeEjecutivo.push_back(moverstring);
+						
+						moverstring = modeloEjecutivo[0];
+						modeloEjecutivo.erase(modeloEjecutivo.begin());
+						modeloenviajeEjecutivo.push_back(moverstring);    
+						
+						moverstring = vnombreEjecutivo[0];
+        				vnombreEjecutivo.erase(vnombreEjecutivo.begin());
+						vnombreenviajeEjecutivo.push_back(moverstring);
+						
+						moverstring = vapellidoEjecutivo[0];
+						vapellidoEjecutivo.erase(vapellidoEjecutivo.begin());
+						vapellidoenviajeEjecutivo.push_back(moverstring);   
+						
+						moverint = vduiEjecutivo[0];
+        				vduiEjecutivo.erase(vduiEjecutivo.begin());
+						vduienviajeEjecutivo.push_back(moverint);
+						
+						moverint = vlicenciaEjecutivo[0];
+						vlicenciaEjecutivo.erase(vlicenciaEjecutivo.begin());
+						vlicenciaenviajeEjecutivo.push_back(moverint);    
+						
+						moverint = vnumisssEjecutivo[0];
+        				vnumisssEjecutivo.erase(vnumisssEjecutivo.begin());
+						vnumisssenviajeEjecutivo.push_back(moverint);
+						
+						moverint = vtelefonoEjecutivo[0];
+						vtelefonoEjecutivo.erase(vtelefonoEjecutivo.begin());
+						vtelefonoenviajeEjecutivo.push_back(moverint); 
+						
+						cout << "viaje ejecutivo iniciado :)" << endl;
+        				break;
+        			case 2:
+        				//TRADICIONAL
+        				break;
+        		}
                 break;
 
             case 4:
-                
+                // TERMINA VIAJE
                 break;
 
             case 5:
@@ -465,8 +541,10 @@ void printTableTradicional(const vector<int>& placaTradicional, const vector<str
     cout << t;
 }
 
-/* void printUserInputQueue(const queue<string>& userInputQueue) {
-    InfoClass t('-', '|', '+');
+void printTableViajeEjecutiva(const vector<int>& placaenviajeEjecutivo, const vector<string>& motorenviajeEjecutivo, const vector<string>& modeloenviajeEjecutivo, 
+	const vector<int>& yearenviajeEjecutivo) {
+    
+	InfoClass t('-', '|', '+');
     t.add("Order");
     t.add("Placa");
     t.add("Motor");
@@ -474,24 +552,38 @@ void printTableTradicional(const vector<int>& placaTradicional, const vector<str
     t.add("Año");
     t.endOfRow();
 
-    queue<string> tempQueue = userInputQueue; // Create a temporary queue to preserve the original queue
-    int order = 1; // Start the order from 1
-
-    while (!tempQueue.empty()) {
-        t.add(to_string(order));
-        t.add(tempQueue.front());
-        tempQueue.pop();
-        t.add(tempQueue.front());
-        tempQueue.pop();
-        t.add(tempQueue.front());
-        tempQueue.pop();
-        t.add(tempQueue.front());
-        tempQueue.pop();
+    for (int i = 0; i < placaenviajeEjecutivo.size(); i++) {
+        t.add(to_string(i+1)); //agrega el orden
+        t.add(to_string(placaenviajeEjecutivo[i])); //agrega el PLACA
+        t.add(motorenviajeEjecutivo[i]); //agrega el MOTOR
+        t.add(modeloenviajeEjecutivo[i]); //agrega el MODELO
+        t.add(to_string(yearenviajeEjecutivo[i])); //agrega el AÑO
         t.endOfRow();
-        order++;
     }
 
     t.setAlignment(2, InfoClass::Alignment::RIGHT);
-    cout << "User Input Queue:\n";
     cout << t;
-} */
+}
+void printTableViajeTradicional(const vector<int>& placaenviajeTradicional, const vector<string>& motorenviajeTradicional, const vector<string>& modeloenviajeTradicional, 
+	const vector<int>& yearenviajeTradicional) {
+    
+	InfoClass t('-', '|', '+');
+    t.add("Order");
+    t.add("Placa");
+    t.add("Motor");
+    t.add("Modelo");
+    t.add("Año");
+    t.endOfRow();
+
+    for (int i = 0; i < placaenviajeTradicional.size(); i++) {
+        t.add(to_string(i+1)); //agrega el orden
+        t.add(to_string(placaenviajeTradicional[i])); //agrega el PLACA
+        t.add(motorenviajeTradicional[i]); //agrega el MOTOR
+        t.add(modeloenviajeTradicional[i]); //agrega el MODELO
+        t.add(to_string(yearenviajeTradicional[i])); //agrega el AÑO
+        t.endOfRow();
+    }
+
+    t.setAlignment(2, InfoClass::Alignment::RIGHT);
+    cout << t;
+}
