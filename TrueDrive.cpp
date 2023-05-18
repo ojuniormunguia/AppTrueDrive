@@ -6,6 +6,8 @@
 #include<queue>
 #include "InfoClass.h"
 
+//Prueba
+
 using namespace std;
 
 bool checkForItemInt(const vector<int>& arr, int data);
