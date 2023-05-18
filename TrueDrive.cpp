@@ -11,20 +11,44 @@ using namespace std;
 bool checkForItemInt(const vector<int>& arr, int data);
 bool checkForItemString(const vector<string>& arr, const string& data);
 void printTable(const vector<int>& placa, const vector<string>& motor, const vector<string>& modelo, const vector<int>& year);
-void printUserInputQueue(const queue<string>& userInputQueue);
+
 
 int main(){
     char respuesta = '\0';
+    int control;
     int opciones;
+    vector<string> vtype;
+    queue<string> userInputQueue;
+    int yearchecker;
+    
+    //U S E R   I N P U T S
+    //Carro
     int placataxi;
     int yeartaxi;
+    string type;
     string motortaxi;
     string modelotaxi;
     vector<int> placa;
     vector<int> year;
     vector<string> motor;
     vector<string> modelo;
-    queue<string> userInputQueue;
+    
+    //Conductor 
+    string nombre;
+    string apellido;
+    int dui;
+    int licencia;
+    int numisss;
+    int telefono;
+    vector<string> vnombre;
+    vector<string> vapellido;
+    vector<int> vdui;
+    vector<int> vlicencia;
+    vector<int> vnumisss;
+    vector<int> vtelefono;
+    
+    //
+    
 
     cout << "Bienvenido a TrueDrive" << endl;
 
@@ -32,62 +56,138 @@ int main(){
         system("cls");
         cout << "Por favor seleccione una opción:\n\n";
         cout << "\t\t1. Ingresar nuevo vehículo y conductor" << endl;
-        cout << "\t\t2. Comenzar Viaje" << endl;
-        cout << "\t\t3. Terminar Viaje" << endl;
-        cout << "\t\t4. Ver lista de conductores" << endl;
+        cout << "\t\t2. Ver lista de conductores" << endl;
+        cout << "\t\t3. Comenzar Viaje" << endl;
+        cout << "\t\t4. Terminar Viaje" << endl;
         cout << "\t\t5. Salir del programa" << endl << endl;
         cout << "Escribir su opción: ";
         cin >> opciones;
 
         switch (opciones) {
-            case 1:
+            case 1: //AGREGAR CONDUCTOR
+        		//* * * D A T O S   D E L   V E H I C U L O * * *
+        		
+        		// YEAR ES INT (REPETIR)
+        	
+                do{
+                cout << "Año: ";
+                cin >> yeartaxi;
+                	
+                    if(yeartaxi>=2015) {
+					
+				    	type="Ejecutiva";
+				    	yearchecker = 1;
+				    	//ENVIARLO A QUEUE EJECUTIVO
+                    } else if(yeartaxi>=2010 && yeartaxi<2015) {
+					 	 type="Tradicional";
+					 	 yearchecker = 2;
+					 	 //ENVIARLO A QUEUE TRADICIONAL
+                    } else {
+						cout<<"No es posible ingresar este vehiculo debido a la antiguedad...\n";
+						yearchecker = 0;
+						//REPETIR AÑO
+					}
+                } while (yearchecker==0);
+				year.push_back(yeartaxi);
+				
+                //YEARCHEKER CATEGORIZA:
+                
+                //(0) ES DEMASIADO ANTIGUO
+                //(1) EJECUTIVO
+                //(2) TRADICIONAL
+                
+                switch (yearchecker) {
+                case 1:
+                	// PLACA ES INT (ÚNICO)
             	
-            	// PLACA ES INT
+                	do {
+                    	cout << "Ingresando Vehículo Ejecutivo" << endl;     
+                    	cout << "placa: ";
+                    	cin >> placataxi;
+                	} while (checkForItemInt(placa, placataxi));
+                	placa.push_back(placataxi);
+
+                	cin.ignore();
+                
+                
+                	// MOTOR ES STRING (REPETIR)
+
+                	cout << "motor: ";                               
+                	getline(cin, motortaxi);
+					motor.push_back(motortaxi);
+                
+                	// MODELO ES STRING (REPETIR)
+
+                	cout << "modelo: ";
+                	getline(cin, modelotaxi);
+                	modelo.push_back(modelotaxi);
+                
+                	//DATOS DEL CONDUCTOR
+                
+                	//NOMBRE ES STRING (ÚNICO)
+                
+                	do{
+                		cout<< "Ingresando datos del conductor...\n";
+                		cout<< "Ingrese el nombre: ";
+                		cin>>nombre;
+					}while(checkForItemString(vnombre,nombre));
+					vnombre.push_back(nombre);
+				
+					//APELLIDO ES STRING (ÚNICO)
+				
+					do{
+					cout<< "Ingrese el apellido: ";
+					cin>>apellido;
+					}while(checkForItemString(vapellido,apellido));
+					vapellido.push_back(apellido);
+                
+                	//DUI ES INT (ÚNICO)
+                
+                	do{
+                		cout<<"Ingrese el # de DUI sin guion: ";
+                		cin>>dui;
+					}while(checkForItemInt(vdui,dui));
+					vdui.push_back(dui);
+				
+					//LICENCIA (ÚNICO)
+				
+					do{
+						cout<<"Ingresa el # de licencia sin guion: ";
+						cin>>licencia;
+					}while(checkForItemInt(vlicencia,licencia));
+					vlicencia.push_back(licencia);
+				
+					//SEGURO SOCIAL ES INT (ÚNICO)
+				
+					do{
+						cout<< "Ingresa el numero de seguro social sin guiones: ";
+						cin>>numisss;
+					}while(checkForItemInt(vnumisss,numisss));
+					vnumisss.push_back(numisss);
+				
+					//NÚMERO DE TELÉFONO ES INT (ÚNICO)
+				
+					do{
+						cout<< "Ingresa el numero de telefono: ";
+						cin>>telefono;
+					}while(checkForItemInt(vtelefono,telefono));
+					vtelefono.push_back(telefono);
+                
+                	break;
+                		
+                	case 2:
+                		
+                		break;
+                	
+                		
+				}
+                
             	
-                do {
-                    cout << "Ingresando Vehículo..." << endl;     
-                    cout << "placa: ";
-                    cin >> placataxi;
-                } while (checkForItemInt(placa, placataxi));
-                placa.push_back(placataxi);
-
-                cin.ignore();  // Ignore newline character
-                
-                // MOTOR ES STRING
-
-                do {
-                    cout << "motor: ";                               
-                    getline(cin, motortaxi);
-                } while (checkForItemString(motor, motortaxi));
-                motor.push_back(motortaxi);
-                
-                // MODELO ES STRING
-
-                do {
-                    cout << "modelo: ";
-                    getline(cin, modelotaxi);
-                } while (checkForItemString(modelo, modelotaxi));
-                modelo.push_back(modelotaxi);
-                
-                // YEAR ES INT
-            	
-                do {  
-                    cout << "Año: ";
-                    cin >> yeartaxi;
-                } while (checkForItemInt(year, yeartaxi));
-                year.push_back(yeartaxi);
-                
-                // Agrega todo al QUEUE ()
-    			userInputQueue.push(to_string(placataxi));
-    			userInputQueue.push(motortaxi);
-    			userInputQueue.push(modelotaxi);
-    			userInputQueue.push(to_string(yeartaxi));
-
-                break;
 
             case 2:
-                // Code logic for starting a trip
-                printUserInputQueue(userInputQueue);
+                // Ver lista de vehículos y conductores
+                printTable(placa, motor, modelo, year);
+                //printUserInputQueue(userInputQueue);  
                 break;
 
             case 3:
@@ -95,7 +195,7 @@ int main(){
                 break;
 
             case 4:
-                printTable(placa, motor, modelo, year);
+                
                 break;
 
             case 5:
@@ -143,11 +243,11 @@ void printTable(const vector<int>& placa, const vector<string>& motor, const vec
     t.endOfRow();
 
     for (int i = 0; i < placa.size(); i++) {
-        t.add(to_string(i));
-        t.add(to_string(placa[i]));
-        t.add(motor[i]);
-        t.add(modelo[i]);
-        t.add(to_string(year[i]));
+        t.add(to_string(i+1)); //agrega el orden
+        t.add(to_string(placa[i])); //agrega el PLACA
+        t.add(motor[i]); //agrega el MOTOR
+        t.add(modelo[i]); //agrega el MODELO
+        t.add(to_string(year[i])); //agrega el AÑO
         t.endOfRow();
     }
 
@@ -155,7 +255,7 @@ void printTable(const vector<int>& placa, const vector<string>& motor, const vec
     cout << t;
 }
 
-void printUserInputQueue(const queue<string>& userInputQueue) {
+/* void printUserInputQueue(const queue<string>& userInputQueue) {
     InfoClass t('-', '|', '+');
     t.add("Order");
     t.add("Placa");
@@ -184,5 +284,4 @@ void printUserInputQueue(const queue<string>& userInputQueue) {
     t.setAlignment(2, InfoClass::Alignment::RIGHT);
     cout << "User Input Queue:\n";
     cout << t;
-}
-
+} */
