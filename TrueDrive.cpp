@@ -429,19 +429,19 @@ void printTableEjecutiva(const vector<int>& placa, const vector<string>& motor, 
     t.add("Año");
     t.endOfRow();
 
-    for (int i = 0; i < placaEjecutivo.size(); i++) {
+    for (int i = 0; i < placa.size(); i++) {
         t.add(to_string(i+1)); //agrega el orden
-        t.add(to_string(placaEjecutivo[i])); //agrega el PLACA
-        t.add(motorEjecutivo[i]); //agrega el MOTOR
-        t.add(modeloEjecutivo[i]); //agrega el MODELO
-        t.add(to_string(yearEjecutivo[i])); //agrega el AÑO
+        t.add(to_string(placa[i])); //agrega el PLACA
+        t.add(motor[i]); //agrega el MOTOR
+        t.add(modelo[i]); //agrega el MODELO
+        t.add(to_string(year[i])); //agrega el AÑO
         t.endOfRow();
     }
 
     t.setAlignment(2, InfoClass::Alignment::RIGHT);
     cout << t;
 }
-void printTableTradicional(const vector<int>& placa, const vector<string>& motor, const vector<string>& modelo, const vector<int>& year, const vector<string>& nombre, const vector<string>& apellido, const vector<int>& dui, const vector<int>& licencia, const vector<int>& isss, const vector<int>& tel) {
+void printTableTradicional(const vector<int>& placa, const vector<string>& motor, const vector<string>& modelo, const vector<int>& year) {
     InfoClass t('-', '|', '+');
     t.add("Order");
     t.add("Placa");
@@ -450,12 +450,12 @@ void printTableTradicional(const vector<int>& placa, const vector<string>& motor
     t.add("Año");
     t.endOfRow();
 
-    for (int i = 0; i < placaTradicional.size(); i++) {
+    for (int i = 0; i < placa.size(); i++) {
         t.add(to_string(i+1)); //agrega el orden
-        t.add(to_string(placaTradicional[i])); //agrega el PLACA
-        t.add(motorTradicional[i]); //agrega el MOTOR
-        t.add(modeloTradicional[i]); //agrega el MODELO
-        t.add(to_string(yearTradicional[i])); //agrega el AÑO
+        t.add(to_string(placa[i])); //agrega el PLACA
+        t.add(motor[i]); //agrega el MOTOR
+        t.add(modelo[i]); //agrega el MODELO
+        t.add(to_string(year[i])); //agrega el AÑO
         t.endOfRow();
     }
 
