@@ -339,9 +339,7 @@ int main(){
 					vtelefonoTradicional.push_back(telefono);
                 
                 	break;
-                		
-                	
-                		
+                				
 				}
                 
             	break;
@@ -498,7 +496,7 @@ void printTable(const vector<int>& placa, const vector<string>& motor, const vec
     t.setAlignment(2, InfoClass::Alignment::RIGHT);
     cout << t;
 }
-void printTableEjecutiva(const vector<int>& placaEjecutivo, const vector<string>& motorEjecutivo, const vector<string>& modeloEjecutivo, const vector<int>& yearEjecutivo) {
+void printTableEjecutiva(const vector<int>& placa, const vector<string>& motor, const vector<string>& modelo, const vector<int>& year) {
     InfoClass t('-', '|', '+');
     t.add("Order");
     t.add("Placa");
@@ -507,19 +505,19 @@ void printTableEjecutiva(const vector<int>& placaEjecutivo, const vector<string>
     t.add("Año");
     t.endOfRow();
 
-    for (int i = 0; i < placaEjecutivo.size(); i++) {
+    for (int i = 0; i < placa.size(); i++) {
         t.add(to_string(i+1)); //agrega el orden
-        t.add(to_string(placaEjecutivo[i])); //agrega el PLACA
-        t.add(motorEjecutivo[i]); //agrega el MOTOR
-        t.add(modeloEjecutivo[i]); //agrega el MODELO
-        t.add(to_string(yearEjecutivo[i])); //agrega el AÑO
+        t.add(to_string(placa[i])); //agrega el PLACA
+        t.add(motor[i]); //agrega el MOTOR
+        t.add(modelo[i]); //agrega el MODELO
+        t.add(to_string(year[i])); //agrega el AÑO
         t.endOfRow();
     }
 
     t.setAlignment(2, InfoClass::Alignment::RIGHT);
     cout << t;
 }
-void printTableTradicional(const vector<int>& placaTradicional, const vector<string>& motorTradicional, const vector<string>& modeloTradicional, const vector<int>& yearTradicional) {
+void printTableTradicional(const vector<int>& placa, const vector<string>& motor, const vector<string>& modelo, const vector<int>& year) {
     InfoClass t('-', '|', '+');
     t.add("Order");
     t.add("Placa");
@@ -528,12 +526,12 @@ void printTableTradicional(const vector<int>& placaTradicional, const vector<str
     t.add("Año");
     t.endOfRow();
 
-    for (int i = 0; i < placaTradicional.size(); i++) {
+    for (int i = 0; i < placa.size(); i++) {
         t.add(to_string(i+1)); //agrega el orden
-        t.add(to_string(placaTradicional[i])); //agrega el PLACA
-        t.add(motorTradicional[i]); //agrega el MOTOR
-        t.add(modeloTradicional[i]); //agrega el MODELO
-        t.add(to_string(yearTradicional[i])); //agrega el AÑO
+        t.add(to_string(placa[i])); //agrega el PLACA
+        t.add(motor[i]); //agrega el MOTOR
+        t.add(modelo[i]); //agrega el MODELO
+        t.add(to_string(year[i])); //agrega el AÑO
         t.endOfRow();
     }
 
