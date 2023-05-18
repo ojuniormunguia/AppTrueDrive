@@ -12,9 +12,9 @@ using namespace std;
 
 bool checkForItemInt(const vector<int>& arr, int data);
 bool checkForItemString(const vector<string>& arr, const string& data);
-void printTable(const vector<int>& placa, const vector<string>& motor, const vector<string>& modelo, const vector<int>& year);
-void printTableEjecutiva(const vector<int>& placa, const vector<string>& motor, const vector<string>& modelo, const vector<int>& year);
-void printTableTradicional(const vector<int>& placa, const vector<string>& motor, const vector<string>& modelo, const vector<int>& year);
+void printTable(const vector<int>& placa, const vector<string>& motor, const vector<string>& modelo, const vector<int>& year, const vector<string>& nombre, const vector<string>& apellido, const vector<int>& dui, const vector<int>& licencia, const vector<int>& isss, const vector<int>& tel);
+void printTableEjecutiva(const vector<int>& placa, const vector<string>& motor, const vector<string>& modelo, const vector<int>& year, const vector<string>& nombre, const vector<string>& apellido, const vector<int>& dui, const vector<int>& licencia, const vector<int>& isss, const vector<int>& tel);
+void printTableTradicional(const vector<int>& placa, const vector<string>& motor, const vector<string>& modelo, const vector<int>& year, const vector<string>& nombre, const vector<string>& apellido, const vector<int>& dui, const vector<int>& licencia, const vector<int>& isss, const vector<int>& tel);
 
 
 int main(){
@@ -322,9 +322,7 @@ int main(){
 					vtelefonoTradicional.push_back(telefono);
                 
                 	break;
-                		
-                	
-                		
+                				
 				}
                 
             	break;
@@ -401,13 +399,19 @@ bool checkForItemString(const vector<string>& arr, const string& data) {
     }
     return false;
 }
-void printTable(const vector<int>& placa, const vector<string>& motor, const vector<string>& modelo, const vector<int>& year) {
+void printTable(const vector<int>& placa, const vector<string>& motor, const vector<string>& modelo, const vector<int>& year, const vector<string>& nombre, const vector<string>& apellido, const vector<int>& dui, const vector<int>& licencia, const vector<int>& isss, const vector<int>& tel) {
     InfoClass t('-', '|', '+');
     t.add("Order");
     t.add("Placa");
     t.add("Motor");
     t.add("Modelo");
     t.add("Año");
+    t.add("Nombre");
+    t.add("Apellido");
+    t.add("DUI");
+    t.add("Licencia");
+    t.add("ISSS");
+    t.add("Telefono");
     t.endOfRow();
 
     for (int i = 0; i < placa.size(); i++) {
@@ -416,19 +420,31 @@ void printTable(const vector<int>& placa, const vector<string>& motor, const vec
         t.add(motor[i]); //agrega el MOTOR
         t.add(modelo[i]); //agrega el MODELO
         t.add(to_string(year[i])); //agrega el AÑO
+        t.add(vnombre[i]); //Nombre del conductor
+        t.add(vapellido[i]); //Apellido del conductor
+        t.add(to_string(vdui[i])); //DUI conductor 
+        t.add(to_string(vlicencia[i]));//Licencia conductor
+        t.add(to_string(vnumisss[i])); //Número seguro social conductor
+        t.add(to_string(vtelefono[i])); //Telefono conductor
         t.endOfRow();
     }
 
     t.setAlignment(2, InfoClass::Alignment::RIGHT);
     cout << t;
 }
-void printTableEjecutiva(const vector<int>& placaEjecutivo, const vector<string>& motorEjecutivo, const vector<string>& modeloEjecutivo, const vector<int>& yearEjecutivo) {
+void printTableEjecutiva(const vector<int>& placa, const vector<string>& motor, const vector<string>& modelo, const vector<int>& year, const vector<string>& nombre, const vector<string>& apellido, const vector<int>& dui, const vector<int>& licencia, const vector<int>& isss, const vector<int>& tel) {
     InfoClass t('-', '|', '+');
     t.add("Order");
     t.add("Placa");
     t.add("Motor");
     t.add("Modelo");
     t.add("Año");
+    t.add("Nombre");
+    t.add("Apellido");
+    t.add("DUI");
+    t.add("Licencia");
+    t.add("ISSS");
+    t.add("Telefono");
     t.endOfRow();
 
     for (int i = 0; i < placaEjecutivo.size(); i++) {
@@ -437,19 +453,31 @@ void printTableEjecutiva(const vector<int>& placaEjecutivo, const vector<string>
         t.add(motorEjecutivo[i]); //agrega el MOTOR
         t.add(modeloEjecutivo[i]); //agrega el MODELO
         t.add(to_string(yearEjecutivo[i])); //agrega el AÑO
+        t.add(vnombreEjecutivo[i]); //Nombre del conductor
+        t.add(vapellidoEjecutivo[i]); //Apellido del conductor
+        t.add(to_string(vduiEjecutivo[i])); //DUI conductor 
+        t.add(to_string(vlicenciaEjecutivo[i]));//Licencia conductor
+        t.add(to_string(vnumisssEjecutivo[i])); //Número seguro social conductor
+        t.add(to_string(vtelefonoEjecutivo[i])); //Telefono conductor
         t.endOfRow();
     }
 
     t.setAlignment(2, InfoClass::Alignment::RIGHT);
     cout << t;
 }
-void printTableTradicional(const vector<int>& placaTradicional, const vector<string>& motorTradicional, const vector<string>& modeloTradicional, const vector<int>& yearTradicional) {
+void printTableTradicional(const vector<int>& placa, const vector<string>& motor, const vector<string>& modelo, const vector<int>& year, const vector<string>& nombre, const vector<string>& apellido, const vector<int>& dui, const vector<int>& licencia, const vector<int>& isss, const vector<int>& tel) {
     InfoClass t('-', '|', '+');
     t.add("Order");
     t.add("Placa");
     t.add("Motor");
     t.add("Modelo");
     t.add("Año");
+    t.add("Nombre");
+    t.add("Apellido");
+    t.add("DUI");
+    t.add("Licencia");
+    t.add("ISSS");
+    t.add("Telefono");
     t.endOfRow();
 
     for (int i = 0; i < placaTradicional.size(); i++) {
@@ -458,6 +486,12 @@ void printTableTradicional(const vector<int>& placaTradicional, const vector<str
         t.add(motorTradicional[i]); //agrega el MOTOR
         t.add(modeloTradicional[i]); //agrega el MODELO
         t.add(to_string(yearTradicional[i])); //agrega el AÑO
+        t.add(vnombreTradicional[i]); //Nombre del conductor
+        t.add(vapellidoTradicional[i]); //Apellido del conductor
+        t.add(to_string(vduiTradicional[i])); //DUI conductor 
+        t.add(to_string(vlicenciaTradicional[i]));//Licencia conductor
+        t.add(to_string(vnumisssTradicional[i])); //Número seguro social conductor
+        t.add(to_string(vtelefonoTradicional[i])); //Telefono conductor
         t.endOfRow();
     }
 
