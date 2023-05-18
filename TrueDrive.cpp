@@ -11,35 +11,42 @@ using namespace std;
 bool checkForItemInt(const vector<int>& arr, int data);
 bool checkForItemString(const vector<string>& arr, const string& data);
 void printTable(const vector<int>& placa, const vector<string>& motor, const vector<string>& modelo, const vector<int>& year);
+void printTableEjecutiva(const vector<int>& placa, const vector<string>& motor, const vector<string>& modelo, const vector<int>& year);
+void printTableTradicional(const vector<int>& placa, const vector<string>& motor, const vector<string>& modelo, const vector<int>& year);
 
 
 int main(){
     char respuesta = '\0';
     int control;
     int opciones;
-    vector<string> vtype;
+    int opcioneslista;
+    vector<string> vtype; 
     queue<string> userInputQueue;
     int yearchecker;
     
     //U S E R   I N P U T S
-    //Carro
-    int placataxi;
+    //Carros
+	int placataxi;
     int yeartaxi;
     string type;
     string motortaxi;
     string modelotaxi;
-    vector<int> placa;
-    vector<int> year;
-    vector<string> motor;
-    vector<string> modelo;
-    
-    //Conductor 
+    //Conductor
     string nombre;
     string apellido;
     int dui;
     int licencia;
     int numisss;
     int telefono;
+    
+    
+    //V E C T O R E S   G E N E R A L E S
+    //Carro
+    vector<int> placa;
+    vector<int> year;
+    vector<string> motor;
+    vector<string> modelo;
+    //Conductor 
     vector<string> vnombre;
     vector<string> vapellido;
     vector<int> vdui;
@@ -47,7 +54,47 @@ int main(){
     vector<int> vnumisss;
     vector<int> vtelefono;
     
-    //
+    //V E C T O R E S   T R A D I C I O N A L E S
+    //Carro
+    vector<int> placaTradicional;
+    vector<int> yearTradicional;
+    vector<string> motorTradicional;
+    vector<string> modeloTradicional;
+    //Conductor 
+    vector<string> vnombreTradicional;
+    vector<string> vapellidoTradicional;
+    vector<int> vduiTradicional;
+    vector<int> vlicenciaTradicional;
+    vector<int> vnumisssTradicional;
+    vector<int> vtelefonoTradicional;
+    
+    //V E C T O R E S   E J E C U T I V O
+    //Carro
+    vector<int> placaEjecutivo;
+    vector<int> yearEjecutivo;
+    vector<string> motorEjecutivo;
+    vector<string> modeloEjecutivo;
+    //Conductor 
+    vector<string> vnombreEjecutivo;
+    vector<string> vapellidoEjecutivo;
+    vector<int> vduiEjecutivo;
+    vector<int> vlicenciaEjecutivo;
+    vector<int> vnumisssEjecutivo;
+    vector<int> vtelefonoEjecutivo;
+    
+    //V E C T O R E S   E N   V I A J E
+    //Carro
+    vector<int> placaenviaje;
+    vector<int> yearenviaje;
+    vector<string> motorenviaje;
+    vector<string> modeloenviaje;
+    //Conductor 
+    vector<string> vnombreenviaje;
+    vector<string> vapellidoenviaje;
+    vector<int> vduienviaje;
+    vector<int> vlicenciaenviaje;
+    vector<int> vnumisssenviaje;
+    vector<int> vtelefonoenviaje;
     
 
     cout << "Bienvenido a TrueDrive" << endl;
@@ -77,10 +124,12 @@ int main(){
 					
 				    	type="Ejecutiva";
 				    	yearchecker = 1;
+				    	yearEjecutivo.push_back(yeartaxi); 
 				    	//ENVIARLO A QUEUE EJECUTIVO
                     } else if(yeartaxi>=2010 && yeartaxi<2015) {
 					 	 type="Tradicional";
 					 	 yearchecker = 2;
+					 	 yearTradicional.push_back(yeartaxi); 
 					 	 //ENVIARLO A QUEUE TRADICIONAL
                     } else {
 						cout<<"No es posible ingresar este vehiculo debido a la antiguedad...\n";
@@ -106,6 +155,7 @@ int main(){
                     	cin >> placataxi;
                 	} while (checkForItemInt(placa, placataxi));
                 	placa.push_back(placataxi);
+                	placaEjecutivo.push_back(placataxi);
 
                 	cin.ignore();
                 
@@ -115,12 +165,14 @@ int main(){
                 	cout << "motor: ";                               
                 	getline(cin, motortaxi);
 					motor.push_back(motortaxi);
+					motorEjecutivo.push_back(motortaxi);
                 
                 	// MODELO ES STRING (REPETIR)
 
                 	cout << "modelo: ";
                 	getline(cin, modelotaxi);
                 	modelo.push_back(modelotaxi);
+                	modeloEjecutivo.push_back(modelotaxi);
                 
                 	//DATOS DEL CONDUCTOR
                 
@@ -132,6 +184,7 @@ int main(){
                 		cin>>nombre;
 					}while(checkForItemString(vnombre,nombre));
 					vnombre.push_back(nombre);
+					vnombreEjecutivo.push_back(nombre);
 				
 					//APELLIDO ES STRING (ÚNICO)
 				
@@ -140,6 +193,7 @@ int main(){
 					cin>>apellido;
 					}while(checkForItemString(vapellido,apellido));
 					vapellido.push_back(apellido);
+					vapellidoEjecutivo.push_back(apellido);
                 
                 	//DUI ES INT (ÚNICO)
                 
@@ -148,6 +202,7 @@ int main(){
                 		cin>>dui;
 					}while(checkForItemInt(vdui,dui));
 					vdui.push_back(dui);
+					vduiEjecutivo.push_back(dui);
 				
 					//LICENCIA (ÚNICO)
 				
@@ -156,6 +211,7 @@ int main(){
 						cin>>licencia;
 					}while(checkForItemInt(vlicencia,licencia));
 					vlicencia.push_back(licencia);
+					vlicenciaEjecutivo.push_back(licencia);
 				
 					//SEGURO SOCIAL ES INT (ÚNICO)
 				
@@ -164,6 +220,7 @@ int main(){
 						cin>>numisss;
 					}while(checkForItemInt(vnumisss,numisss));
 					vnumisss.push_back(numisss);
+					vnumisssEjecutivo.push_back(numisss);
 				
 					//NÚMERO DE TELÉFONO ES INT (ÚNICO)
 				
@@ -172,21 +229,130 @@ int main(){
 						cin>>telefono;
 					}while(checkForItemInt(vtelefono,telefono));
 					vtelefono.push_back(telefono);
+					vtelefonoEjecutivo.push_back(telefono);
                 
                 	break;
                 		
                 	case 2:
+                	
+					// PLACA ES INT (ÚNICO)
+            	
+                	do {
+                    	cout << "Ingresando Vehículo Tradicional" << endl;     
+                    	cout << "placa: ";
+                    	cin >> placataxi;
+                	} while (checkForItemInt(placa, placataxi));
+                	placa.push_back(placataxi);
+                	placaTradicional.push_back(placataxi);
+
+                	cin.ignore();
+                
+                
+                	// MOTOR ES STRING (REPETIR)
+
+                	cout << "motor: ";                               
+                	getline(cin, motortaxi);
+					motor.push_back(motortaxi);
+					motorTradicional.push_back(motortaxi);
+                
+                	// MODELO ES STRING (REPETIR)
+
+                	cout << "modelo: ";
+                	getline(cin, modelotaxi);
+                	modelo.push_back(modelotaxi);
+                	modeloTradicional.push_back(modelotaxi);
+                
+                	//DATOS DEL CONDUCTOR
+                
+                	//NOMBRE ES STRING (ÚNICO)
+                
+                	do{
+                		cout<< "Ingresando datos del conductor...\n";
+                		cout<< "Ingrese el nombre: ";
+                		cin>>nombre;
+					}while(checkForItemString(vnombre,nombre));
+					vnombre.push_back(nombre);
+					vnombreTradicional.push_back(nombre);
+				
+					//APELLIDO ES STRING (ÚNICO)
+				
+					do{
+					cout<< "Ingrese el apellido: ";
+					cin>>apellido;
+					}while(checkForItemString(vapellido,apellido));
+					vapellido.push_back(apellido);
+					vapellidoTradicional.push_back(apellido);
+                
+                	//DUI ES INT (ÚNICO)
+                
+                	do{
+                		cout<<"Ingrese el # de DUI sin guion: ";
+                		cin>>dui;
+					}while(checkForItemInt(vdui,dui));
+					vdui.push_back(dui);
+					vduiTradicional.push_back(dui);
+				
+					//LICENCIA (ÚNICO)
+				
+					do{
+						cout<<"Ingresa el # de licencia sin guion: ";
+						cin>>licencia;
+					}while(checkForItemInt(vlicencia,licencia));
+					vlicencia.push_back(licencia);
+					vlicenciaTradicional.push_back(licencia);
+				
+					//SEGURO SOCIAL ES INT (ÚNICO)
+				
+					do{
+						cout<< "Ingresa el numero de seguro social sin guiones: ";
+						cin>>numisss;
+					}while(checkForItemInt(vnumisss,numisss));
+					vnumisss.push_back(numisss);
+					vnumisssTradicional.push_back(numisss);
+				
+					//NÚMERO DE TELÉFONO ES INT (ÚNICO)
+				
+					do{
+						cout<< "Ingresa el numero de telefono: ";
+						cin>>telefono;
+					}while(checkForItemInt(vtelefono,telefono));
+					vtelefono.push_back(telefono);
+					vtelefonoTradicional.push_back(telefono);
+                
+                	break;
                 		
-                		break;
                 	
                 		
 				}
                 
-            	
+            	break;
 
             case 2:
                 // Ver lista de vehículos y conductores
-                printTable(placa, motor, modelo, year);
+                cout << "¿Cual lista desea ver?:\n\n";
+        		cout << "\t\t1. Lista de conductores totales" << endl;
+        		cout << "\t\t2. Lista de conductores ejecutivos disponibles" << endl;
+        		cout << "\t\t3. Lista de conductores Tradicionales disponibles" << endl;
+        		cout << "\t\t4. Lista de conductores en viaje" << endl;
+                
+                cout << "Seleccionar (1,2,3 o 4): ";
+        		cin>>opcioneslista;
+        		
+        		switch(opcioneslista) {
+        			case 1:
+        				printTable(placa, motor, modelo, year);//Imprime tabla completa
+        				break;
+        			case 2:
+        				printTableEjecutiva(placaEjecutivo, motorEjecutivo, modeloEjecutivo, yearEjecutivo);//Imprime ejecutiva disponible
+        				break;
+        			case 3:
+        				printTableTradicional(placaTradicional, motorTradicional, modeloTradicional, yearTradicional);//Imprime tradicional disponible
+        				break;
+        			case 4:
+        				break;
+        			//Imprimirá los que estan en viaje
+				}
+
                 //printUserInputQueue(userInputQueue);  
                 break;
 
@@ -248,6 +414,48 @@ void printTable(const vector<int>& placa, const vector<string>& motor, const vec
         t.add(motor[i]); //agrega el MOTOR
         t.add(modelo[i]); //agrega el MODELO
         t.add(to_string(year[i])); //agrega el AÑO
+        t.endOfRow();
+    }
+
+    t.setAlignment(2, InfoClass::Alignment::RIGHT);
+    cout << t;
+}
+void printTableEjecutiva(const vector<int>& placaEjecutivo, const vector<string>& motorEjecutivo, const vector<string>& modeloEjecutivo, const vector<int>& yearEjecutivo) {
+    InfoClass t('-', '|', '+');
+    t.add("Order");
+    t.add("Placa");
+    t.add("Motor");
+    t.add("Modelo");
+    t.add("Año");
+    t.endOfRow();
+
+    for (int i = 0; i < placaEjecutivo.size(); i++) {
+        t.add(to_string(i+1)); //agrega el orden
+        t.add(to_string(placaEjecutivo[i])); //agrega el PLACA
+        t.add(motorEjecutivo[i]); //agrega el MOTOR
+        t.add(modeloEjecutivo[i]); //agrega el MODELO
+        t.add(to_string(yearEjecutivo[i])); //agrega el AÑO
+        t.endOfRow();
+    }
+
+    t.setAlignment(2, InfoClass::Alignment::RIGHT);
+    cout << t;
+}
+void printTableTradicional(const vector<int>& placaTradicional, const vector<string>& motorTradicional, const vector<string>& modeloTradicional, const vector<int>& yearTradicional) {
+    InfoClass t('-', '|', '+');
+    t.add("Order");
+    t.add("Placa");
+    t.add("Motor");
+    t.add("Modelo");
+    t.add("Año");
+    t.endOfRow();
+
+    for (int i = 0; i < placaTradicional.size(); i++) {
+        t.add(to_string(i+1)); //agrega el orden
+        t.add(to_string(placaTradicional[i])); //agrega el PLACA
+        t.add(motorTradicional[i]); //agrega el MOTOR
+        t.add(modeloTradicional[i]); //agrega el MODELO
+        t.add(to_string(yearTradicional[i])); //agrega el AÑO
         t.endOfRow();
     }
 
