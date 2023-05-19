@@ -123,13 +123,13 @@ int main(){
 
     do {
         system("cls");
-        cout << "Por favor seleccione una opción:\n\n";
-        cout << "\t\t1. Ingresar nuevo vehículo y conductor" << endl;
+        cout << "Por favor seleccione una opcion:\n\n";
+        cout << "\t\t1. Ingresar nuevo vehiculo y conductor" << endl;
         cout << "\t\t2. Ver lista de conductores" << endl;
         cout << "\t\t3. Comenzar Viaje" << endl;
         cout << "\t\t4. Terminar Viaje" << endl;
         cout << "\t\t5. Salir del programa" << endl << endl;
-        cout << "Escribir su opción: ";
+        cout << "Escribir su opcion: ";
         cin >> opciones;
 
         switch (opciones) {
@@ -140,7 +140,7 @@ int main(){
         	
                 do{
                 cout << " " << endl; 
-				cout << "Año: ";
+				cout << "Anio: ";
                 cin >> yeartaxi;
                 	
                     if(yeartaxi>=2015) {
@@ -174,7 +174,7 @@ int main(){
             	
                 	do {
                     	cout << " " << endl;  
-						cout << "Ingresando Vehículo Ejecutivo" << endl;     
+						cout << "Ingresando Vehiculo Ejecutivo" << endl;     
                     	cout << " " << endl; 
 						cout << "placa: ";
                     	cin >> placataxi;
@@ -266,7 +266,7 @@ int main(){
             	
                 	do {
 						cout << " " << endl; 
-						cout << "Ingresando Vehículo Tradicional" << endl;     
+						cout << "Ingresando Vehiculo Tradicional" << endl;     
                     	cout << " " << endl; 
 						cout << "placa: ";
                     	cin >> placataxi;
@@ -393,7 +393,7 @@ int main(){
             case 3:
                 // COMIENZA VIAJE
                 cout << " " << endl; 
-				cout << "¿Qué tipo de viaje desea iniciar?:\n\n";
+				cout << "¿Que tipo de viaje desea iniciar?:\n\n";
         		cout << "\t\t1. Ejecutivo" << endl;
         		cout << "\t\t2. Tradicional" << endl;
                 
@@ -502,7 +502,7 @@ int main(){
             case 4:
                 // TERMINA VIAJE
                 cout << " " << endl; 
-				cout << "¿Qué tipo de viaje desea Finalizar?:\n\n";
+				cout << "¿Que tipo de viaje desea Finalizar?:\n\n";
         		cout << "\t\t1. Ejecutivo" << endl;
         		cout << "\t\t2. Tradicional" << endl;
                 
@@ -626,7 +626,7 @@ int main(){
                 break;
 
             default:
-                cout << "No ha seleccionado una opción válida (1-5)." << endl;
+                cout << "No ha seleccionado una opcion válida (1-5)." << endl;
                 break;
         }
 
@@ -660,7 +660,7 @@ void printTable(const vector<int>& placa, const vector<string>& motor, const vec
     t.add("Placa");
     t.add("Motor");
     t.add("Modelo");
-    t.add("Año");
+    t.add("Anio");
     t.endOfRow();
 
     for (int i = 0; i < placa.size(); i++) {
@@ -681,7 +681,7 @@ void printTableEjecutiva(const vector<int>& placa, const vector<string>& motor, 
     t.add("Placa");
     t.add("Motor");
     t.add("Modelo");
-    t.add("Año");
+    t.add("Anio");
     t.endOfRow();
 
     for (int i = 0; i < placa.size(); i++) {
@@ -702,7 +702,7 @@ void printTableTradicional(const vector<int>& placa, const vector<string>& motor
     t.add("Placa");
     t.add("Motor");
     t.add("Modelo");
-    t.add("Año");
+    t.add("Anio");
     t.endOfRow();
 
     for (int i = 0; i < placa.size(); i++) {
@@ -726,7 +726,7 @@ void printTableViajeEjecutiva(const vector<int>& placaenviajeEjecutivo, const ve
     t.add("Placa");
     t.add("Motor");
     t.add("Modelo");
-    t.add("Año");
+    t.add("Anio");
     t.endOfRow();
 
     for (int i = 0; i < placaenviajeEjecutivo.size(); i++) {
@@ -749,7 +749,7 @@ void printTableViajeTradicional(const vector<int>& placaenviajeTradicional, cons
     t.add("Placa");
     t.add("Motor");
     t.add("Modelo");
-    t.add("Año");
+    t.add("Anio");
     t.endOfRow();
 
     for (int i = 0; i < placaenviajeTradicional.size(); i++) {
