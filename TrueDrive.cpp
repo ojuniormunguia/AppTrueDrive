@@ -30,6 +30,7 @@ int main(){
     int yearchecker;
     int moverint;
 	string moverstring;
+	int seleccion;
 	    
     //U S E R   I N P U T S
     //Carros
@@ -138,7 +139,8 @@ int main(){
         		// YEAR ES INT (REPETIR)
         	
                 do{
-                cout << "Año: ";
+                cout << " " << endl; 
+				cout << "Año: ";
                 cin >> yeartaxi;
                 	
                     if(yeartaxi>=2015) {
@@ -171,8 +173,10 @@ int main(){
                 	// PLACA ES INT (ÚNICO)
             	
                 	do {
-                    	cout << "Ingresando Vehículo Ejecutivo" << endl;     
-                    	cout << "placa: ";
+                    	cout << " " << endl;  
+						cout << "Ingresando Vehículo Ejecutivo" << endl;     
+                    	cout << " " << endl; 
+						cout << "placa: ";
                     	cin >> placataxi;
                 	} while (checkForItemInt(placa, placataxi));
                 	placa.push_back(placataxi);
@@ -183,14 +187,14 @@ int main(){
                 
                 	// MOTOR ES STRING (REPETIR)
 
-                	cout << "motor: ";                               
+					cout << "motor: ";                               
                 	getline(cin, motortaxi);
 					motor.push_back(motortaxi);
 					motorEjecutivo.push_back(motortaxi);
                 
                 	// MODELO ES STRING (REPETIR)
 
-                	cout << "modelo: ";
+					cout << "modelo: ";
                 	getline(cin, modelotaxi);
                 	modelo.push_back(modelotaxi);
                 	modeloEjecutivo.push_back(modelotaxi);
@@ -200,8 +204,10 @@ int main(){
                 	//NOMBRE ES STRING (ÚNICO)
                 
                 	do{
-                		cout<< "Ingresando datos del conductor...\n";
-                		cout<< "Ingrese el nombre: ";
+                		cout << " " << endl; 
+						cout<< "Ingresando datos del conductor...\n";
+                		cout << " " << endl; 
+						cout<< "Ingrese el nombre: ";
                 		cin>>nombre;
 					}while(checkForItemString(vnombre,nombre));
 					vnombre.push_back(nombre);
@@ -219,7 +225,7 @@ int main(){
                 	//DUI ES INT (ÚNICO)
                 
                 	do{
-                		cout<<"Ingrese el # de DUI sin guion: ";
+						cout<<"Ingrese el # de DUI sin guion: ";
                 		cin>>dui;
 					}while(checkForItemInt(vdui,dui));
 					vdui.push_back(dui);
@@ -259,8 +265,10 @@ int main(){
 					// PLACA ES INT (ÚNICO)
             	
                 	do {
-                    	cout << "Ingresando Vehículo Tradicional" << endl;     
-                    	cout << "placa: ";
+						cout << " " << endl; 
+						cout << "Ingresando Vehículo Tradicional" << endl;     
+                    	cout << " " << endl; 
+						cout << "placa: ";
                     	cin >> placataxi;
                 	} while (checkForItemInt(placa, placataxi));
                 	placa.push_back(placataxi);
@@ -271,14 +279,14 @@ int main(){
                 
                 	// MOTOR ES STRING (REPETIR)
 
-                	cout << "motor: ";                               
+					cout << "motor: ";                               
                 	getline(cin, motortaxi);
 					motor.push_back(motortaxi);
 					motorTradicional.push_back(motortaxi);
                 
                 	// MODELO ES STRING (REPETIR)
 
-                	cout << "modelo: ";
+					cout << "modelo: ";
                 	getline(cin, modelotaxi);
                 	modelo.push_back(modelotaxi);
                 	modeloTradicional.push_back(modelotaxi);
@@ -288,8 +296,10 @@ int main(){
                 	//NOMBRE ES STRING (REPETIR)
                 
                 	
-                	cout<< "Ingresando datos del conductor...\n";
-                	cout<< "Ingrese el nombre: ";
+                	cout << " " << endl; 
+					cout<< "Ingresando datos del conductor...\n";
+                	cout << " " << endl; 
+					cout<< "Ingrese el nombre: ";
                 	cin>>nombre;
 					vnombre.push_back(nombre);
 					vnombreTradicional.push_back(nombre);
@@ -305,7 +315,7 @@ int main(){
                 	//DUI ES INT (ÚNICO)
                 
                 	do{
-                		cout<<"Ingrese el # de DUI sin guion: ";
+						cout<<"Ingrese el # de DUI sin guion: ";
                 		cin>>dui;
 					}while(checkForItemInt(vdui,dui));
 					vdui.push_back(dui);
@@ -346,12 +356,13 @@ int main(){
 
             case 2:
                 // Ver lista de vehículos y conductores
-                cout << "¿Cual lista desea ver?:\n\n";
+                cout << " " << endl; 
+				cout << "¿Cual lista desea ver?:\n\n";
         		cout << "\t\t1. Lista de conductores totales" << endl;
         		cout << "\t\t2. Lista de conductores ejecutivos disponibles" << endl;
         		cout << "\t\t3. Lista de conductores Tradicionales disponibles" << endl;
         		cout << "\t\t4. Lista de conductores en viaje" << endl;
-                
+                cout << " " << endl; 
                 cout << "Seleccionar (1,2,3 o 4): ";
         		cin>>opcioneslista;
         		
@@ -367,7 +378,12 @@ int main(){
         				break;
         			case 4:  				
         				//Imprime los que estan en viaje
+        				cout << " " << endl; 
+        				cout << "Viajes ejecutivos en proceso:" << endl; 
         				printTableViajeEjecutiva(placaenviajeEjecutivo, motorenviajeEjecutivo, modeloenviajeEjecutivo, yearenviajeEjecutivo);
+        				cout << " " << endl; 
+        				cout << "Viajes tradicionales en proceso:" << endl; 
+        				printTableViajeTradicional(placaenviajeTradicional, motorenviajeTradicional, modeloenviajeTradicional, yearenviajeTradicional);
         				break;
 				}
 
@@ -376,7 +392,8 @@ int main(){
 
             case 3:
                 // COMIENZA VIAJE
-                cout << "¿Qué tipo de viaje desea iniciar?:\n\n";
+                cout << " " << endl; 
+				cout << "¿Qué tipo de viaje desea iniciar?:\n\n";
         		cout << "\t\t1. Ejecutivo" << endl;
         		cout << "\t\t2. Tradicional" << endl;
                 
@@ -386,7 +403,6 @@ int main(){
         		switch(opcionesviaje) {
         			case 1:
         				//EJECUTIVO
-        				
         				
         				moverint = placaEjecutivo[0]; //usa "moverint/moverstring" para copiar primer elemento
         				placaEjecutivo.erase(placaEjecutivo.begin()); //elimina el primer elemento
@@ -428,16 +444,179 @@ int main(){
 						vtelefonoEjecutivo.erase(vtelefonoEjecutivo.begin());
 						vtelefonoenviajeEjecutivo.push_back(moverint); 
 						
-						cout << "viaje ejecutivo iniciado :)" << endl;
-        				break;
+						cout << " " << endl; 
+						cout << "viaje ejecutivo iniciado" << endl;
+        				cout << " " << endl; 
+						break;
         			case 2:
         				//TRADICIONAL
+        				
+        				
+        				moverint = placaTradicional[0]; //usa "moverint/moverstring" para copiar primer elemento
+        				placaTradicional.erase(placaTradicional.begin()); //elimina el primer elemento
+						placaenviajeTradicional.push_back(moverint); //pega el primer elemento en vector "enviaje"
+						
+						moverint = yearTradicional[0];
+						yearTradicional.erase(yearTradicional.begin());
+						yearenviajeTradicional.push_back(moverint);    
+						
+						moverstring = motorTradicional[0];
+        				motorTradicional.erase(motorTradicional.begin());
+						motorenviajeTradicional.push_back(moverstring);
+						
+						moverstring = modeloTradicional[0];
+						modeloTradicional.erase(modeloTradicional.begin());
+						modeloenviajeTradicional.push_back(moverstring);    
+						
+						moverstring = vnombreTradicional[0];
+        				vnombreTradicional.erase(vnombreTradicional.begin());
+						vnombreenviajeTradicional.push_back(moverstring);
+						
+						moverstring = vapellidoTradicional[0];
+						vapellidoTradicional.erase(vapellidoTradicional.begin());
+						vapellidoenviajeTradicional.push_back(moverstring);   
+						
+						moverint = vduiTradicional[0];
+        				vduiTradicional.erase(vduiTradicional.begin());
+						vduienviajeTradicional.push_back(moverint);
+						
+						moverint = vlicenciaTradicional[0];
+						vlicenciaTradicional.erase(vlicenciaTradicional.begin());
+						vlicenciaenviajeTradicional.push_back(moverint);    
+						
+						moverint = vnumisssTradicional[0];
+        				vnumisssTradicional.erase(vnumisssTradicional.begin());
+						vnumisssenviajeTradicional.push_back(moverint);
+						
+						moverint = vtelefonoTradicional[0];
+						vtelefonoTradicional.erase(vtelefonoTradicional.begin());
+						vtelefonoenviajeTradicional.push_back(moverint); 
+						
+						cout << " " << endl; 
+						cout << "viaje Tradicional iniciado" << endl;
+        				cout << " " << endl; 
         				break;
         		}
                 break;
 
             case 4:
                 // TERMINA VIAJE
+                cout << " " << endl; 
+				cout << "¿Qué tipo de viaje desea Finalizar?:\n\n";
+        		cout << "\t\t1. Ejecutivo" << endl;
+        		cout << "\t\t2. Tradicional" << endl;
+                
+                cout << "Seleccionar (1 o 2): ";
+        		cin>>opcionesviaje;
+        		
+        		switch(opcionesviaje) {
+        			case 1:
+        				//EJECUTIVO
+        				cout << " " << endl; 
+        				cout << "Seleccione viaje a finalizar:" << endl; 
+        				printTableViajeEjecutiva(placaenviajeEjecutivo, motorenviajeEjecutivo, modeloenviajeEjecutivo, yearenviajeEjecutivo);
+        				cout << " " << endl;
+        				cout << "Seleccionar: ";
+        				cin>>seleccion;
+        				
+        				moverint = placaenviajeEjecutivo[0+seleccion-1]; //usa "moverint/moverstring" para copiar primer elemento
+        				placaenviajeEjecutivo.erase(placaenviajeEjecutivo.begin()); //elimina el primer elemento
+						placaEjecutivo.push_back(moverint); //pega el primer elemento en vector "enviaje"
+						
+						moverint = yearenviajeEjecutivo[0+seleccion-1];
+						yearenviajeEjecutivo.erase(yearenviajeEjecutivo.begin());
+						yearEjecutivo.push_back(moverint);    
+						
+						moverstring = motorenviajeEjecutivo[0+seleccion-1];
+        				motorenviajeEjecutivo.erase(motorenviajeEjecutivo.begin());
+						motorEjecutivo.push_back(moverstring);
+						
+						moverstring = modeloenviajeEjecutivo[0+seleccion-1];
+						modeloenviajeEjecutivo.erase(modeloenviajeEjecutivo.begin());
+						modeloEjecutivo.push_back(moverstring);    
+						
+						moverstring = vnombreenviajeEjecutivo[0+seleccion-1];
+        				vnombreenviajeEjecutivo.erase(vnombreenviajeEjecutivo.begin());
+						vnombreEjecutivo.push_back(moverstring);
+						
+						moverstring = vapellidoenviajeEjecutivo[0+seleccion-1];
+						vapellidoenviajeEjecutivo.erase(vapellidoenviajeEjecutivo.begin());
+						vapellidoEjecutivo.push_back(moverstring);   
+						
+						moverint = vduienviajeEjecutivo[0+seleccion-1];
+        				vduienviajeEjecutivo.erase(vduienviajeEjecutivo.begin());
+						vduiEjecutivo.push_back(moverint);
+						
+						moverint = vlicenciaenviajeEjecutivo[0+seleccion-1];
+						vlicenciaenviajeEjecutivo.erase(vlicenciaenviajeEjecutivo.begin());
+						vlicenciaEjecutivo.push_back(moverint);    
+						
+						moverint = vnumisssenviajeEjecutivo[0+seleccion-1];
+        				vnumisssenviajeEjecutivo.erase(vnumisssenviajeEjecutivo.begin());
+						vnumisssEjecutivo.push_back(moverint);
+						
+						moverint = vtelefonoenviajeEjecutivo[0+seleccion-1];
+						vtelefonoenviajeEjecutivo.erase(vtelefonoenviajeEjecutivo.begin());
+						vtelefonoEjecutivo.push_back(moverint); 
+						
+						cout << " " << endl; 
+						cout << "viaje ejecutivo Finalizado" << endl;
+        				cout << " " << endl; 
+						break;
+        			case 2:
+        				//TRADICIONAL
+        				cout << " " << endl; 
+        				cout << "Seleccione viaje a finalizar:" << endl; 
+        				printTableViajeTradicional(placaenviajeTradicional, motorenviajeTradicional, modeloenviajeTradicional, yearenviajeTradicional);
+        				cout << " " << endl;
+        				cout << "Seleccionar: ";
+        				cin>>seleccion;
+        				
+        				moverint = placaenviajeTradicional[0+seleccion-1]; //usa "moverint/moverstring" para copiar primer elemento
+        				placaenviajeTradicional.erase(placaenviajeTradicional.begin()); //elimina el primer elemento
+						placaTradicional.push_back(moverint); //pega el primer elemento en vector "enviaje"
+						
+						moverint = yearenviajeTradicional[0+seleccion-1];
+						yearenviajeTradicional.erase(yearenviajeTradicional.begin());
+						yearTradicional.push_back(moverint);    
+						
+						moverstring = motorenviajeTradicional[0+seleccion-1];
+        				motorenviajeTradicional.erase(motorenviajeTradicional.begin());
+						motorTradicional.push_back(moverstring);
+						
+						moverstring = modeloenviajeTradicional[0+seleccion-1];
+						modeloenviajeTradicional.erase(modeloenviajeTradicional.begin());
+						modeloTradicional.push_back(moverstring);    
+						
+						moverstring = vnombreenviajeTradicional[0+seleccion-1];
+        				vnombreenviajeTradicional.erase(vnombreenviajeTradicional.begin());
+						vnombreTradicional.push_back(moverstring);
+						
+						moverstring = vapellidoenviajeTradicional[0+seleccion-1];
+						vapellidoenviajeTradicional.erase(vapellidoenviajeTradicional.begin());
+						vapellidoTradicional.push_back(moverstring);   
+						
+						moverint = vduienviajeTradicional[0+seleccion-1];
+        				vduienviajeTradicional.erase(vduienviajeTradicional.begin());
+						vduiTradicional.push_back(moverint);
+						
+						moverint = vlicenciaenviajeTradicional[0+seleccion-1];
+						vlicenciaenviajeTradicional.erase(vlicenciaenviajeTradicional.begin());
+						vlicenciaTradicional.push_back(moverint);    
+						
+						moverint = vnumisssenviajeTradicional[0+seleccion-1];
+        				vnumisssenviajeTradicional.erase(vnumisssenviajeTradicional.begin());
+						vnumisssTradicional.push_back(moverint);
+						
+						moverint = vtelefonoenviajeTradicional[0+seleccion-1];
+						vtelefonoenviajeTradicional.erase(vtelefonoenviajeTradicional.begin());
+						vtelefonoTradicional.push_back(moverint); 
+						
+						cout << " " << endl; 
+						cout << "viaje Tradicional finalizado" << endl;
+        				cout << " " << endl; 
+        				break;
+        		}
                 break;
 
             case 5:
